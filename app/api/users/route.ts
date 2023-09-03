@@ -1,37 +1,42 @@
 import { prisma } from "@/lib/prisma";
-import { NextResponse} from "next/server";
+import { NextResponse } from "next/server";
 
- export async function GET(request: Request) {
-    const users = await prisma.user.findMany();
-    console.log(users)
-    return NextResponse.json(users);
+export const POST = async (request: Request) => {
+  try {
+    const body = await request.json();
+    const { name, email } = body;
+
+    const newUser = await prisma.user.create({
+      data: {
+        name,
+        email,
+      },
+    });
+
+    return NextResponse.json(newUser);
+  } catch (err) {
+    return NextResponse.json(
+      {
+        message: "User creation Error",
+        err,
+      },
+      { status: 500 }
+    );
   }
+};
 
-  export async function POST(request: Request) {
+export const GET = async (request: Request) => {
+  try {
+    const newUser = await prisma.user.findMany();
 
-    try {
-      const {name, email} = await request.json()
-
-    const user = await prisma.user.create({
-      data : {
-        t
-      }
-    })
-
-    return new NextResponse(JSON.stringify(user), {
-      status : 201, 
-      headers: {"Content-type" : "application/json"}
-    })
-      
-    } catch (error: any) {
-       if (error.code === "P2002") {
-      return new NextResponse("User with email already exists", {
-        status: 409,
-      });
-    }
-    return new NextResponse(error.message, { status: 500 });
+    return NextResponse.json(newUser);
+  } catch (err) {
+    return NextResponse.json(
+      {
+        message: "Get Error",
+        err,
+      },
+      { status: 500 }
+    );
   }
-    }
-      
-  
-
+};
