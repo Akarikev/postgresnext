@@ -3,13 +3,14 @@ import { NextResponse } from "next/server";
 
 export async function GET(
   request: Request,
-  { params }: { params: { id: number } }
+  { params }: { params: { id: any} }
 ) {
-  const id = params.id;
+  const { id } = params;
+
+  // Ensure 'id' is properly formatted as a UserWhereUniqueInput
+  const where = { id: parseInt(id) };
   const user = await prisma.user.findUnique({
-    where: {
-      id,
-    },
+    where: where,
   });
 
   if (!user) {
@@ -24,7 +25,7 @@ export async function PATCH(
   request: Request,
   { params }: { params: { id : number} }
 ) {
-  const id = params.id;
+   const {id} = params; 
   let json = await request.json();
 
   const updated_user = await prisma.user.update({
@@ -39,15 +40,15 @@ export async function PATCH(
   return NextResponse.json(updated_user);
 }
 
-
-export async function DELETE(
-  request: Request,
-  { params }: { params: { id: number } }
-) {
+export async function DELETE(request: Request, { params }: any) {
   try {
-    const id = params.id;
+    const { id } = params;
+
+    // Ensure 'id' is properly formatted as a UserWhereUniqueInput
+    const where = { id: parseInt(id) }; // Assuming 'id' is an integer
+
     await prisma.user.delete({
-      where: { id },
+      where: where,
     });
 
     return new NextResponse(null, { status: 204 });

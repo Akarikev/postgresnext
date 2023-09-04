@@ -16,10 +16,28 @@ export const POST = async (request: Request) => {
   } catch (error) {
     return NextResponse.json(
       {
-        message: "User creation Error",
+        message: "post creation Error",
         error,
       },
       { status: 500 }
     );
   }
 };
+
+
+export const GET = async (request: Request) => {
+  try {
+   const post = await prisma.post.findMany();
+    return NextResponse.json(post);
+  } catch (error) {
+    return NextResponse.json(
+      {
+        message: "get Error",
+        error,
+      },
+      { status: 500 }
+    );
+  }
+};
+
+

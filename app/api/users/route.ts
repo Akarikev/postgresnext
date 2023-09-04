@@ -12,8 +12,8 @@ export const POST = async (request: Request) => {
         email,
       },
     });
-
-    return NextResponse.json(newUser);
+    console.log(JSON.stringify(newUser, null, 2));
+    return NextResponse.json(JSON.stringify(newUser, null, 2));
   } catch (err) {
     return NextResponse.json(
       {
