@@ -105,11 +105,11 @@ const User: React.FC = () => {
           .map((user) => (
             <div key={user.id}>
               <li>{user.name}</li>
-              <small>{`${
-                searchResults.filter((u) => u.name === searchUserName).length
-              } result found`}</small>
             </div>
           ))}
+        <small>{`${
+          searchResults.filter((u) => u.name === searchUserName).length
+        } result found`}</small>
       </ul>
       <div>
         <h1 className="text-3xl font-bold text-center uppercase mb-4">
