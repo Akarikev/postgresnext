@@ -69,6 +69,9 @@ export default function RandomTest() {
 
   return (
     <div>
+      <h1 className="text-center mt-3 mb-3 font-extrabold text-2xl md:text-3xl lg:text-4xl text-red-400">
+        SOME SHOP
+      </h1>
       <div className="flex flex-col justify-center items-center mt-4">
         <form
           onSubmit={(e) => {
@@ -104,6 +107,7 @@ export default function RandomTest() {
                       width={120}
                       height={120}
                       alt={`${item.title} Image ${index}`}
+                      loading="lazy"
                       className="object-contain w-auto h-auto rounded-md shadow-md"
                     />
                   ))}
