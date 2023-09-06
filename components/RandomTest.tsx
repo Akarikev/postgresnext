@@ -96,14 +96,15 @@ export default function RandomTest() {
                 key={item.id}
                 className="flex flex-col justify-center items-center border shadow-md rounded-md gap-4 p-4 mt-4"
               >
-                <div>
+                <div className="flex flex-wrap justify-evenly gap-3">
                   {item.images?.map((imageSrc, index) => (
                     <Image
                       src={imageSrc}
                       key={index}
-                      width={100}
-                      height={100}
+                      width={120}
+                      height={120}
                       alt={`${item.title} Image ${index}`}
+                      className="object-contain w-auto h-auto rounded-md shadow-md"
                     />
                   ))}
                 </div>
