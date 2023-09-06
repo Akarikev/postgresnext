@@ -5,6 +5,7 @@ import { prisma } from "@/lib/prisma";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import axios from "axios";
+import { SearchIcon } from "lucide-react";
 
 type UserProps = {
   id: number;
@@ -96,10 +97,12 @@ const User: React.FC = () => {
           }}
         />
 
-        <Button type="submit">Search</Button>
+        <Button type="submit">
+          <SearchIcon />
+        </Button>
       </form>
       <h2 className="text-center">Search Results:</h2>
-      <ul className="shadow-md text-center mt-4 mb-4 rounded-md border lg:ml-10 lg:mr-10 flex flex-col justify-center items-center">
+      <ul className="shadow-md text-center mt-4 mb-4 rounded-md border lg:ml-32 lg:mr-32 md:mr-32 md:ml-32 flex flex-col justify-center items-center">
         {searchResults
           .filter((user) => searchUserName === user.name)
           .map((user) => (
@@ -109,7 +112,7 @@ const User: React.FC = () => {
           ))}
         <small>{`${
           searchResults.filter((u) => u.name === searchUserName).length
-        } result found`}</small>
+        } user(s) found`}</small>
       </ul>
       <div>
         <h1 className="text-3xl font-bold text-center uppercase mb-4">
