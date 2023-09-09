@@ -25,6 +25,7 @@ export default function RandomTest() {
 
   const fetchProducts = useCallback(async () => {
     try {
+      //we implement a logic to the api link to limit the number of pages.
       const response = await axios.get(
         `https://dummyjson.com/products?limit=5&skip=${
           (page - 1) * 5
@@ -47,7 +48,7 @@ export default function RandomTest() {
 
     setTimeout(() => {
       setPage((prevPage) => prevPage + 1);
-      // After 9 seconds (adjust the time as needed), toggle the loading state back to false
+      // After 4 seconds (adjust the time as needed), toggle the loading state back to false
       setMainLoading(false);
     }, 4000);
   };
