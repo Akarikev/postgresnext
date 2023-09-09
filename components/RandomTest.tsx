@@ -58,6 +58,9 @@ export default function RandomTest() {
         `https://dummyjson.com/products/search?q=${searchedItem}`
       );
       setAllProducts(response.data.products); // Set the search results as the new products list
+      if (searchedItem !== response.data.products) {
+        return <p>No item found</p>;
+      }
     } catch (error) {
       console.error("Error searching products:", error);
     }
